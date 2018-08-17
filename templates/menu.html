@@ -1,0 +1,68 @@
+{% extends "admin-layout.html" %}
+{% block body %}
+  <div class="container bg-light main">
+    <ul class="list-group sortable">
+      <button type="button" class="btn btn-primary btn-block" onclick="paste_item(this);">Додати</button>
+{% for item in menu_data %}
+      <li class="list-group-item" id="menu-item">
+        <div class="d-flex flex-row justify-content-between">
+          <input type="text" class="form-control" id="menu_item" placeholder="Назва" value="{{ item[0] }}">
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary" onclick="make_url(this);">URL</button>
+            <button type="button" class="btn btn-primary" onclick="make_list(this);">Список</button>
+            <button type="button" class="btn btn-primary bg-danger" onclick="delete_more(this)">Видалити</button>
+          </div>
+        </div>
+        <div id="put">
+{% if item[1] %}
+          <ul class="list-group min-item sortable" id="menu-list">
+            <button type="button" class="btn btn-primary btn-block" onclick="paste_small_item(this);">Додати</button>
+{% for small_item in item[3] %}
+            <li class="list-group-item d-flex flex-row justify-content-between" id="menu-small-item">
+              <input type="text" class="form-control" id="menu_small_item" placeholder="Назва" value="{{ small_item[0] }}">
+              <input type="text" class="form-control" id="menu_small_url" placeholder="Url" value="{{ small_item[1] }}">
+              <button type="button" class="btn btn-primary bg-danger" onclick="delete_less(this)">Видалити</button>
+            </li>
+{% endfor %}
+          </ul>
+{% else %}
+          <input type="text" class="form-control" placeholder="Url" id="menu_url" value="{{ item[2] }}">
+{% endif %}
+        </div>
+      </li>
+{% endfor %}
+    </ul>
+    <button type="button" class="btn btn-success btn-block" onclick="send();">Зберігти</button> 
+  </div>
+  <div style="display: none;">
+    <li class="list-group-item" id="menu-item-to-copy">
+      <div class="d-flex flex-row justify-content-between">
+        <input type="text" class="form-control" id="menu_item" placeholder="Назва">
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary" onclick="make_url(this);">URL</button>
+          <button type="button" class="btn btn-primary" onclick="make_list(this);">Список</button>
+          <button type="button" class="btn btn-primary bg-danger" onclick="delete_more(this)">Видалити</button>
+        </div>
+      </div>
+      <div id="put"><input type="text" class="form-control" placeholder="Url" id="menu_url"></div>
+    </li>
+    <li class="list-group-item d-flex flex-row justify-content-between" id="menu-small-item-to-copy">
+      <input type="text" class="form-control" id="menu_small_item" placeholder="Назва">
+      <input type="text" class="form-control" id="menu_small_url" placeholder="Url">
+      <button type="button" class="btn btn-primary bg-danger" onclick="delete_less(this)">Видалити</button>
+    </li>
+    <ul class="list-group min-item sortable" id="menu-list-to-copy">
+      <button type="button" class="btn btn-primary btn-block" onclick="paste_small_item(this);">Додати</button>
+      <li class="list-group-item d-flex flex-row justify-content-between" id="menu-small-item">
+      <input type="text" class="form-control" id="menu_small_item" placeholder="Назва">
+      <input type="text" class="form-control" id="menu_small_url" placeholder="Url">
+      <button type="button" class="btn btn-primary bg-danger" onclick="delete_less(this)">Видалити</button>
+      </li>
+    </ul>
+    <input type="text" class="form-control" placeholder="Url" id="menu-url-to-copy">
+  </div>
+  <script src="/static/js/jquery.min.js"></script>
+  <script src="/static/js/for_admin.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.2/jquery.ui.touch-punch.min.js"></script>
+{% endblock %}

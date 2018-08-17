@@ -1,0 +1,19 @@
+{% extends "admin-layout.html" %}
+{% block body %}
+  <div class="container bg-light main">
+    <ul class="list-group">
+      <button type="submit" class="btn btn-primary btn-block" onclick="goto('/admin/new_page');">Додати</button>
+{% for page in pages %}
+      <li class="list-group-item d-flex flex-row justify-content-between">
+        <h2><a href="/{{ page[1] }}">{{ page[0] }}</a></h2>
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary" onclick="goto('/admin/edit/{{ page[1] }}');">Редагувати</button>
+          <button type="button" class="btn btn-primary bg-danger" onclick="delete_page('{{ page[1] }}');">Видалити</button>
+        </div>
+      </li>
+{% endfor %}
+    </ul>
+  </div>
+
+  <script src="/static/js/jquery.min.js"></script>
+{% endblock %}

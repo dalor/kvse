@@ -1,0 +1,21 @@
+{% extends "admin-layout.html" %}
+{% block body %}
+  <div class="container bg-light main">
+    <h2 class="center">Редагування профілю</h2>
+    <div class="form-group">
+      <label for="usr"><h4>Мій логін:</h4></label>
+      <input type="text" class="form-control" id="edit_login" value="{{ login }}">
+    </div>
+    <div class="form-group">
+      <label for="pwd"><h4>Створити новий пароль:</h4></label>
+      <input type="password" class="form-control" id="edit_password">
+    </div>
+    <div class="form-group">
+      <label for="pwd"><h4>Повторити новий пароль:</h4></label>
+      <input type="password" class="form-control" id="repeat_edit_password">
+    </div>
+    <button type="button" class="btn btn-primary btn-block" onclick="edit_profile();">Зберігти зміни</button>
+  </div>
+
+  <script src="/static/js/jquery.min.js"></script>
+{% endblock %}

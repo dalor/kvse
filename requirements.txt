@@ -1,0 +1,7 @@
+aiohttp
+gunicorn
+aiopg
+aiohttp_session
+bcrypt
+cryptography
+aiohttp_jinja2

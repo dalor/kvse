@@ -1,0 +1,30 @@
+{% extends "admin-layout.html" %}
+{% block body %}
+  <div class="container bg-light main">
+       <ul class="list-group">
+        <div class="small_reg d-flex flex-row justify-content-between">
+          <input type="text" class="form-control" id="small_login" placeholder="Логін">
+          <input type="text" class="form-control" id="small_password" placeholder="Пароль">
+        </div>
+        <button type="button" class="btn btn-primary btn-block" onclick="reg_user();">Додати</button>
+{% for user in users %}
+        <li class="list-group-item d-flex flex-row justify-content-between">
+          <input type="hidden" id="edit_id" value="{{ user[0] }}">
+          <input type="text" class="form-control" id="edit_login" placeholder="Логін" value="{{ user[1] }}">
+          <input type="text" class="form-control" id="edit_password" placeholder="Новий пароль">
+          <label class="switch" data-toggle="tooltip" data-placement="bottom" title="Адмін?">
+            <input type="checkbox" id="is_admin"{% if user[2] %} checked{% endif %}>
+            <span class="slider"></span>
+          </label>
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary" onclick="edit_user(this);">Редагувати</button>
+            <button type="button" class="btn btn-primary bg-danger" onclick="delete_user(this);">Видалити</button>
+          </div>
+        </li>
+{% endfor %}
+        </ul> 
+    </div>
+
+  <script src="/static/js/jquery.min.js"></script>
+  <script src="/static/js/for_admin.js"></script>
+{% endblock %}
