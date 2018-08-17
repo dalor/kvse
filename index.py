@@ -67,7 +67,7 @@ async def login(request):
                     await cur.execute('SELECT password, is_admin, id FROM users WHERE login = %s', (auth['login'],))
                     pwa = await cur.fetchone()
                     if pwa and bcrypt.checkpw(auth['password'].encode(), bytes(pwa[0])):
-                        session = await new_session(request)
+                        #session = await new_session(request)
                         session['online'] = True
                         session['id'] = pwa[2]
                         session['login'] = auth['login']
